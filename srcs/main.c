@@ -6,13 +6,13 @@
 /*   By: pdubois <pdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 15:35:30 by pdubois           #+#    #+#             */
-/*   Updated: 2023/02/09 17:14:06 by pdubois          ###   ########.fr       */
+/*   Updated: 2023/02/09 17:53:47 by pdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	min(int ac, char **av)
+int	main(int ac, char **av)
 {
 	t_game	*game;
 
