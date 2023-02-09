@@ -6,13 +6,13 @@
 /*   By: pdubois <pdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 18:44:38 by paul              #+#    #+#             */
-/*   Updated: 2023/02/07 14:44:15 by pdubois          ###   ########.fr       */
+/*   Updated: 2023/02/09 16:05:11 by pdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	ft_check(int ac, char **av)
+void	ft_check_basic(int ac, char **av)
 {
 	int	len_av;
 
