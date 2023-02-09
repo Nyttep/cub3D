@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pdubois <pdubois@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aradice <aradice@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 18:34:28 by paul              #+#    #+#             */
-/*   Updated: 2023/02/09 16:15:58 by pdubois          ###   ########.fr       */
+/*   Updated: 2023/02/09 18:31:45 by aradice          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,14 @@ typedef struct s_game
 {
 	void	*mlx;
 	void	*win;
+	void	*img;
+	int		width;
+	int		height;
+
+	int		x;
+	int		y;
+	int		rotation;
+	
 	char	**map;
 	int		floor[3];
 	int		ceiling[3];
@@ -72,5 +80,8 @@ int		ft_is_valid_char_map(char c);
 
 void	ft_i_hate_norminette(t_img *set[4], t_game *game);
 void	ft_norminette_made_me_do_that(char *set[6]);
+
+
+void	tests_raycasting(t_game	*game);
 
 #endif
