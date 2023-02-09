@@ -6,7 +6,7 @@
 #    By: pdubois <pdubois@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/17 21:14:22 by pdubois           #+#    #+#              #
-#    Updated: 2022/01/06 00:35:49 by pdubois          ###   ########.fr        #
+#    Updated: 2023/02/09 17:20:52 by pdubois          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ INCS_NAME = cub3D.h
 INCS_PATH = includes
 INCS = $(addprefix $(INCS_PATH)/, $(INCS_NAME))
 LIBS = libft/libft.a \
-		minilibx-linux/libmlx_Linux.a
+		mlx-linux/libmlx_Linux.a
 MLX = -lXext -lX11
 RM = rm -rf
 OBJS = $(SRCS:.c=.o)
@@ -39,10 +39,10 @@ OBJS = $(SRCS:.c=.o)
 all: $(NAME)
 
 %.o : %.c
-			${CC} ${CFLAGS} -g -I ${INCS_PATH} -I libft -I minilibx-linux -c $< -o $@
+			${CC} ${CFLAGS} -g -I ${INCS_PATH} -I libft -I mlx-linux -c $< -o $@
 
 ${LIBS}:
-			make -C libft; make -C minilibx-linux
+			make -C libft; make -C mlx-linux
 
 ${NAME}:	${OBJS} ${INCS} ${LIBS}
 			${CC} -g -o ${NAME} ${OBJS} ${LIBS} ${MLXFLAGS}
