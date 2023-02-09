@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pdubois <pdubois@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aradice <aradice@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 15:35:30 by pdubois           #+#    #+#             */
-/*   Updated: 2023/02/09 16:05:05 by pdubois          ###   ########.fr       */
+/*   Updated: 2023/02/09 17:10:57 by aradice          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	main(int ac, char **av)
+int	min(int ac, char **av)
 {
 	t_game	*game;
 
