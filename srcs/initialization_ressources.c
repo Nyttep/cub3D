@@ -6,7 +6,7 @@
 /*   By: pdubois <pdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:34:21 by pdubois           #+#    #+#             */
-/*   Updated: 2023/02/08 16:35:53 by pdubois          ###   ########.fr       */
+/*   Updated: 2023/02/09 16:12:33 by pdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	ft_parse_and_init(t_game *game, char *set[6], char *buff, bool state[6])
 	}
 }
 
-void	ft_init_ressources(t_game *game, int fd)
+char	*ft_init_ressources(t_game *game, int fd)
 {
 	char	*set[6];
 	char	*buff;
@@ -98,4 +98,7 @@ void	ft_init_ressources(t_game *game, int fd)
 		free(buff);
 		buff = get_next_line(fd);
 	}
+	if (ft_is_unfinished(state))
+		ft_error(game, "The .cub does not conform");
+	return (buff);
 }
