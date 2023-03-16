@@ -12,7 +12,7 @@
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-MLXFLAGS = -lXext -lX11
+MLXFLAGS = -lXext -lX11 -lm 
 
 NAME = cub3D
 SRCS_NAME = main.c \
@@ -32,14 +32,14 @@ INCS_PATH = includes
 INCS = $(addprefix $(INCS_PATH)/, $(INCS_NAME))
 LIBS = libft/libft.a \
 		minilibx-linux/libmlx_Linux.a
-MLX = -lXext -lX11
+MLX = -lXext -lX11 -lm 
 RM = rm -rf
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
 
 %.o : %.c
-			${CC} ${CFLAGS} -g -I ${INCS_PATH} -I libft -I minilibx-linux -c $< -o $@
+			${CC} ${CFLAGS} -g -I ${INCS_PATH} -I libft -I minilibx-linux -c $< -o $@ 
 
 ${LIBS}:
 			make -C libft; make -C minilibx-linux
