@@ -12,29 +12,7 @@
 
 #include "cub3D.h"
 
-void	ft_fill_map(t_game *game, char **srcs, int max_len)
-{
-	int	i;
-	int	j;
-	int	k;
-
-	i = 0;
-	while (srcs[i])
-	{
-		j = 0;
-		k = 0;
-		game->map[i][k++] = ' ';
-		while (srcs[i][j] && srcs[i][j] != '\n')
-		{
-			game->map[i][k] = srcs[i][j];
-			j++;
-			k++;
-		}
-		while (k < max_len - 1)
-			game->map[i][k++] = ' ';
-		i++;
-	}
-}
+// void	ft_fill_map()
 
 char	**ft_pre_init_map(t_game *game, int fd, char *buff)
 {
@@ -43,9 +21,10 @@ char	**ft_pre_init_map(t_game *game, int fd, char *buff)
 
 	i = 0;
 	ret = malloc(sizeof(char*) * 20);
-	ft_bzero(ret, (sizeof(char*) * 20));
+	ft_bzero(ret, sizeof(ret));
 	while (buff && ft_skip_spaces(buff)[0] == '\n')
 	{
+		buff = get_next_line(fd);
 		free(buff);
 		buff = get_next_line(fd);
 	}
@@ -62,51 +41,43 @@ char	**ft_pre_init_map(t_game *game, int fd, char *buff)
 	return (ret);
 }
 
-void	ft_display_map(char **map)
+void	ft_fill_str(char *to, char *from, int length_max)
 {
-	int	i;
+	int	j;
 
-	i = 0;
-	while (map[i])
+	j = 0;
+	while (j < length_max)
 	{
-		ft_printf("|%s|\n", map[i]);
-		i++;
-	}
+		if (from[j] == '\n')
+			while (j < length_max)
+				to[j++] = ' ';
+		else
+			to[j] =  from[j];
+		j++;
+	}	
 }
 
 void	ft_init_map(t_game *game, int fd, char *buff)
 {
 	char	**tmp;
 	int		nb_line;
+	int		length_max;
 	int		i;
-	int		max_len;
 
-	max_len = 0;
 	i = 0;
 	tmp = ft_pre_init_map(game, fd, buff);
 	nb_line = ft_strslen(tmp);
-	game->map = malloc(sizeof(char*) * (nb_line + 1));
-	if (!game->map)
-		ft_error(game, NULL);
-	ft_bzero(game->map, (sizeof(char*) * (nb_line + 1)));
+	length_max = ft_max_length(tmp);
+	game->map = malloc(sizeof(char*) * (nb_line));
 	while (i < nb_line)
 	{
-		if (ft_strlen(tmp[i]) > max_len)
-			max_len = ft_strlen(tmp[i]);
+		game->map[i] = malloc(sizeof(char) * (length_max + 2));
+		game->map[i][length_max] = 0;
+		ft_fill_str(game->map[i], tmp[i], length_max);
+		free(tmp[i])
 		i++;
 	}
-	max_len += 2;
-	i = 0;
-	while (i < nb_line)
-	{
-		game->map[i] = malloc(sizeof(char) * (max_len));
-		if (!game->map[i])
-			ft_error(game, NULL);
-		ft_bzero(game->map[i], (sizeof(char) * (max_len)));
-		i++;
-	}
-	ft_fill_map(game, tmp, max_len);
-	ft_free_strs(tmp);
+	free(tmp);
 }
 
 void	ft_init(t_game *game, char **av)
@@ -115,15 +86,15 @@ void	ft_init(t_game *game, char **av)
 	char *buff;
 
 	ft_bzero(game, sizeof(game));
-	game->mlx = mlx_init();
-	if (!(game->mlx))
-		ft_error(game, NULL);
+	// game->mlx = mlx_init();
+	// if (!(game->mlx))
+	// 	ft_error(game, NULL); TEMPORAIRE SANS LA MLX
 	fd = open(av[1], O_RDONLY);
 	if (fd < 0)
 		ft_error(game, NULL);
 	buff = ft_init_ressources(game, fd); // does not handle spaces well yet
 	ft_init_map(game, fd, buff);
-	ft_display_map(game->map);
+	ft_check_map(game);
 	// check map & end of .cub
 	close(fd);
 }

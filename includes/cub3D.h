@@ -6,7 +6,7 @@
 /*   By: pdubois <pdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 18:34:28 by paul              #+#    #+#             */
-/*   Updated: 2023/02/09 16:15:58 by pdubois          ###   ########.fr       */
+/*   Updated: 2023/03/31 10:46:50 by pdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <stdlib.h>
 # include <errno.h>
 # include <fcntl.h>
-# include "mlx.h"
+// # include "mlx.h"
 # include "libft.h"
 
 # define BUFFER_SIZE 100
