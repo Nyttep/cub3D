@@ -6,7 +6,7 @@
 /*   By: pdubois <pdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 18:54:26 by pdubois           #+#    #+#             */
-/*   Updated: 2023/03/31 11:04:15 by pdubois          ###   ########.fr       */
+/*   Updated: 2023/04/01 18:04:05 by pdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,27 @@ int	ft_max_length(char **strs)
 			ret = tmp;
 		i++;
 	}
-	return (ret)
+	return (ret);
+}
+
+void	*ft_realloc_strs(void *ptr, size_t size)
+{
+	char	**tmp;
+	char	**ret;
+	int		i;
+
+	tmp = (char **)ptr;
+	i = 0;
+	ret = malloc(size);
+	if (!ret)
+		return ((void *) NULL);
+	ft_bzero(ret, size);
+	while (tmp[i])
+	{
+		// ft_printf("i = %d\n", i);
+		ret[i] = tmp[i];
+		i++;
+	}
+	free(ptr);
+	return (ret);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aradice <aradice@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pdubois <pdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 15:35:30 by pdubois           #+#    #+#             */
-/*   Updated: 2023/02/09 18:28:25 by aradice          ###   ########.fr       */
+/*   Updated: 2023/04/01 19:03:40 by pdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	ft_loop(t_game *game)
 		if (game->ray.raydiry != 0)
 			game->ray.deltadisty = fabs(1 / game->ray.raydiry);
 		else
-		game->ray.deltadisty = 1e30;
+			game->ray.deltadisty = 1e30;
 
 
 		if (game->ray.raydirx < 0)

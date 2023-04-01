@@ -6,7 +6,7 @@
 /*   By: pdubois <pdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 18:44:38 by paul              #+#    #+#             */
-/*   Updated: 2023/03/31 11:36:29 by pdubois          ###   ########.fr       */
+/*   Updated: 2023/04/01 16:22:58 by pdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,17 +87,17 @@ int	ft_check_rgb(char *str)
 	return (0);
 }
 
-int	ft_check_map(t_game *game)
+void	ft_check_map(t_game *game)
 {
 	int		i;
 	int		j;
 	char	c;
 	
-	i = 0;
-	while (game->map[i])
+	i = 1;
+	while (i < ft_strslen(game->map) - 1)
 	{
-		j = 0;
-		while (game->map[i][j])
+		j = 1;
+		while (j < ft_strlen(game->map[i]) - 1)
 		{
 			c = game->map[i][j];
 			if (!ft_is_valid_char_map(c))

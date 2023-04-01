@@ -6,7 +6,7 @@
 /*   By: pdubois <pdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 18:34:28 by paul              #+#    #+#             */
-/*   Updated: 2023/04/01 15:53:30 by pdubois          ###   ########.fr       */
+/*   Updated: 2023/04/01 17:12:55 by pdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,7 @@ void	ft_error(t_game *game, char *s);
 
 void	ft_check_basic(int ac, char **av);
 int		ft_check_rgb(char *str);
+void	ft_check_map(t_game *game);
 
 void	ft_init(t_game *game, char **av);
 char	*ft_init_ressources(t_game *game, int fd);
@@ -138,6 +139,7 @@ char	*ft_skip_spaces(char *s);
 bool	ft_is_unfinished(bool state[6]);
 char	*ft_format_path(char *buff);
 int		ft_is_valid_char_map(char c);
+void	*ft_realloc_strs(void *ptr, size_t size);
 
 void	ft_i_hate_norminette(t_img *set[4], t_game *game);
 void	ft_norminette_made_me_do_that(char *set[6]);

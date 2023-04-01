@@ -15,24 +15,31 @@
 void	ft_fill_map(t_game *game, char **srcs, int max_len)
 {
 	int	i;
+	int	l;
 	int	j;
 	int	k;
 
 	i = 0;
+	l = 0;
 	while (srcs[i])
 	{
 		j = 0;
 		k = 0;
-		game->map[i][k++] = ' ';
+		game->map[l][k++] = ' ';
 		while (srcs[i][j] && srcs[i][j] != '\n')
 		{
-			game->map[i][k] = srcs[i][j];
+			if (l == 0 || l == ft_strslen(srcs) + 1)
+				game->map[l][k] = ' ';
+			else
+				game->map[l][k] = srcs[i][j];
 			j++;
 			k++;
 		}
 		while (k < max_len - 1)
-			game->map[i][k++] = ' ';
-		i++;
+			game->map[l][k++] = ' ';
+		if (l != 0 && l != ft_strslen(srcs))
+			i++;
+		l++;
 	}
 }
 
@@ -43,6 +50,8 @@ char	**ft_pre_init_map(t_game *game, int fd, char *buff)
 
 	i = 0;
 	ret = malloc(sizeof(char*) * 20);
+	if (!ret)
+		ft_error(game, NULL);
 	ft_bzero(ret, (sizeof(char*) * 20));
 	while (buff && ft_skip_spaces(buff)[0] == '\n')
 	{
@@ -53,10 +62,15 @@ char	**ft_pre_init_map(t_game *game, int fd, char *buff)
 		ft_error(game, "The .cub does not conform");
 	while (buff && ft_skip_spaces(buff)[0] != '\n')
 	{
+		if (i % 20 == 19)
+		{
+			ft_printf("i = %d\n", i);
+			ret = ft_realloc_strs(ret, (sizeof(char*) * (i + 21)));
+		}
 		ret[i] = buff;
 		i++;
-		if (i % 20 == 19)
-			ft_realloc(ret, (sizeof(char*) * (i + 20)));
+		if (!ret)
+			ft_error(game, NULL);
 		buff = get_next_line(fd);
 	}
 	return (ret);
@@ -84,12 +98,12 @@ void	ft_init_map(t_game *game, int fd, char *buff)
 	max_len = 0;
 	i = 0;
 	tmp = ft_pre_init_map(game, fd, buff);
-	nb_line = ft_strslen(tmp);
+	nb_line = ft_strslen(tmp) + 2;
 	game->map = malloc(sizeof(char*) * (nb_line + 1));
 	if (!game->map)
 		ft_error(game, NULL);
 	ft_bzero(game->map, (sizeof(char*) * (nb_line + 1)));
-	while (i < nb_line)
+	while (i < nb_line - 2)
 	{
 		if (ft_strlen(tmp[i]) > max_len)
 			max_len = ft_strlen(tmp[i]);
@@ -124,6 +138,7 @@ void	ft_init(t_game *game, char **av)
 	buff = ft_init_ressources(game, fd); // does not handle spaces well yet
 	ft_init_map(game, fd, buff);
 	ft_display_map(game->map);
+	ft_check_map(game);
 	// check map & end of .cub
 	close(fd);
 }
