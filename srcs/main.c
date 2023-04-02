@@ -6,7 +6,7 @@
 /*   By: pdubois <pdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 15:35:30 by pdubois           #+#    #+#             */
-/*   Updated: 2023/04/01 19:03:40 by pdubois          ###   ########.fr       */
+/*   Updated: 2023/04/02 17:46:49 by pdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -253,75 +253,11 @@ int	ft_movements(int keycode, t_game *game)
 
 void	tests_raycasting(t_game	*game)
 {
-	int	i;
-	int	y;
-
 	game->win = mlx_new_window(game->mlx, WIN_WIDTH, WIN_HEIGHT, "Cub3d");
 	game->img = mlx_new_image(game->mlx, WIN_WIDTH, WIN_HEIGHT);
 
-	game->color_down = 0x468468;
-	game->color_up = 0xE2CB89;
-	game->texwidth = 800;
-	game->texheight = 800;
-
-	i = 0;
-	y = 0;
-	while (game->map[i] != NULL)
-	{
-		y = 0;
-		while (game->map[i][y] != '\0')
-		{
-			if (game->map[i][y] == 'N' || game->map[i][y] == 'S' || game->map[i][y] == 'E' || game->map[i][y] == 'W')
-			{
-				game->direction = game->map[i][y];
-				game->x = y;
-				game->y = i;
-			}
-			y++;
-		}
-		i++;
-	}
-
-	if (game->direction == 'N')
-	{
-		game->ray.dirx = -1;
-		game->ray.diry = 0;
-		game->ray.planx = 0;
-		game->ray.plany = 0.66;
-	}
-	else if (game->direction == 'S')
-	{
-		game->ray.dirx = 1;
-		game->ray.diry = 0;
-		game->ray.planx = 0;
-		game->ray.plany = -0.66;
-	}
-	else if (game->direction == 'E')
-	{
-		game->ray.dirx = 0;
-		game->ray.diry = 1;
-		game->ray.planx = 0.66;
-		game->ray.plany = 0;
-	}
-	else if (game->direction == 'W')
-	{
-		game->ray.dirx = 0;
-		game->ray.diry = -1;
-		game->ray.planx = -0.66;
-		game->ray.plany = 0;
-	}
 	game->ray.posx = (double)game->x + 0.5;
 	game->ray.posy = (double)game->y + 0.5;
-
-	game->texture[0].img = mlx_xpm_file_to_image(game->mlx, "./blue.xpm", &game->width, &game->height);
-	game->texture[1].img = mlx_xpm_file_to_image(game->mlx, "./red.xpm", &game->width, &game->height);
-	game->texture[2].img = mlx_xpm_file_to_image(game->mlx, "./green.xpm", &game->width, &game->height);
-	game->texture[3].img = mlx_xpm_file_to_image(game->mlx, "./yellow.xpm", &game->width, &game->height);
-	game->texture[0].addr = (int *)mlx_get_data_addr(game->texture[0].img, &game->texture[0].bpp, &game->texture[0].size_line, &game->texture[0].endian);
-	game->texture[1].addr = (int *)mlx_get_data_addr(game->texture[1].img, &game->texture[1].bpp, &game->texture[1].size_line, &game->texture[1].endian);
-	game->texture[2].addr = (int *)mlx_get_data_addr(game->texture[2].img, &game->texture[2].bpp, &game->texture[2].size_line, &game->texture[2].endian);
-	game->texture[3].addr = (int *)mlx_get_data_addr(game->texture[3].img, &game->texture[3].bpp, &game->texture[3].size_line, &game->texture[3].endian);
-
 
 	mlx_hook(game->win, 2,  1L << 0, ft_movements, game);
 	mlx_hook(game->win, 17, 1L << 0, ft_close, NULL);
