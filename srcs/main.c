@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pdubois <pdubois@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aradice <aradice@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 15:35:30 by pdubois           #+#    #+#             */
-/*   Updated: 2023/04/02 18:09:58 by pdubois          ###   ########.fr       */
+/*   Updated: 2023/04/02 18:20:14 by aradice          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,12 @@ int	main(int ac, char **av)
 	if (!game)
 		ft_error(game, NULL);
 	ft_init(game, av);
-	tests_raycasting(game);
-}
-
-void	ft_coordinate_on_texture(t_game *game)
-{
-	game->ray.texx = (int)(game->ray.wallx * (double)game->texwidth);
-	if (game->ray.side == 0 && game->ray.raydirx > 0)
-		game->ray.texx = game->texwidth - game->ray.texx - 1;
-	if (game->ray.side == 1 && game->ray.raydiry < 0)
-		game->ray.texx = game->texwidth - game->ray.texx - 1;
+	game->win = mlx_new_window(game->mlx, WIN_WIDTH, WIN_HEIGHT, "Cub3d");
+	game->img = mlx_new_image(game->mlx, WIN_WIDTH, WIN_HEIGHT);
+	mlx_hook(game->win, 2, 1L << 0, ft_movements, game);
+	mlx_hook(game->win, 17, 1L << 0, ft_close, NULL);
+	mlx_loop_hook(game->mlx, ft_loop, game);
+	mlx_loop(game->mlx);
 }
 
 int	ft_loop(t_game *game)
@@ -75,18 +71,4 @@ int	ft_movements(int keycode, t_game *game)
 	if (keycode == XK_Escape)
 		exit(0);
 	return (0);
-}
-
-void	tests_raycasting(t_game	*game)
-{
-	game->win = mlx_new_window(game->mlx, WIN_WIDTH, WIN_HEIGHT, "Cub3d");
-	game->img = mlx_new_image(game->mlx, WIN_WIDTH, WIN_HEIGHT);
-
-	game->ray.posx = (double)game->x + 0.5;
-	game->ray.posy = (double)game->y + 0.5;
-
-	mlx_hook(game->win, 2,  1L << 0, ft_movements, game);
-	mlx_hook(game->win, 17, 1L << 0, ft_close, NULL);
-	mlx_loop_hook(game->mlx, ft_loop, game);
-	mlx_loop(game->mlx);
 }

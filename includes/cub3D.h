@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pdubois <pdubois@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aradice <aradice@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 18:34:28 by paul              #+#    #+#             */
-/*   Updated: 2023/04/02 18:10:12 by pdubois          ###   ########.fr       */
+/*   Updated: 2023/04/02 18:17:12 by aradice          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,6 +163,7 @@ void	ft_num_texture(t_game *game);
 void	ft_value_wallx_when_hit(t_game *game);
 void	ft_coordinate_on_texture(t_game *game);
 void	ft_draw_texture(t_game *game, int i);
+void	ft_player_middle_box(t_game *game);
 
 void	ft_move_up(int keycode, t_game *game);
 void	ft_move_down(int keycode, t_game *game);
