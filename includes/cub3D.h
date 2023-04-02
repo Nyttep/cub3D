@@ -6,7 +6,7 @@
 /*   By: aradice <aradice@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 18:34:28 by paul              #+#    #+#             */
-/*   Updated: 2023/02/09 18:31:45 by aradice          ###   ########.fr       */
+/*   Updated: 2023/04/02 18:02:48 by aradice          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,5 +146,30 @@ void	tests_raycasting(t_game	*game);
 int		ft_close(void);
 int		ft_movements(int keycode, t_game *game);
 int		ft_loop(t_game *game);
+
+void	ft_draw_up(t_game *game);
+void	ft_draw_down(t_game *game);
+void	ft_draw_texture(t_game *game, int i);
+
+void	ft_new_image(t_game *game);
+void	ft_raypos_and_direction(t_game *game, int i);
+void	ft_which_box_i_am(t_game *game);
+void	ft_lenght_ray(t_game *game);
+void	ft_step_init_sidedist(t_game *game);
+void	ft_hit_function(t_game *game);
+void	ft_distance_prependicular_ray(t_game *game);
+void	ft_heigth_line_to_draw(t_game *game);
+void	ft_lowest_and_highest_pixel(t_game *game);
+void	ft_num_texture(t_game *game);
+void	ft_value_wallx_when_hit(t_game *game);
+void	ft_coordinate_on_texture(t_game *game);
+void	ft_draw_texture(t_game *game, int i);
+
+void	ft_move_up(int keycode, t_game *game);
+void	ft_move_down(int keycode, t_game *game);
+void	ft_move_left(int keycode, t_game *game);
+void	ft_move_right(int keycode, t_game *game);
+void	ft_rotate_left(int keycode, t_game *game);
+void	ft_rotate_right(int keycode, t_game *game);
 
 #endif
