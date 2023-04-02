@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialization.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pdubois <pdubois@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aradice <aradice@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 17:09:12 by pdubois           #+#    #+#             */
-/*   Updated: 2023/04/02 18:00:10 by pdubois          ###   ########.fr       */
+/*   Updated: 2023/04/02 18:18:52 by aradice          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -225,5 +225,6 @@ void	ft_init(t_game *game, char **av)
 	ft_check_map(game);
 	ft_init_player(game);
 	ft_check_after_map(game, fd, buff);
+	ft_player_middle_box(game);
 	close(fd);
 }

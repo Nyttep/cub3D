@@ -6,12 +6,11 @@
 /*   By: aradice <aradice@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 17:56:46 by aradice           #+#    #+#             */
-/*   Updated: 2023/04/02 17:58:26 by aradice          ###   ########.fr       */
+/*   Updated: 2023/04/02 18:19:21 by aradice          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
 
 void	ft_raypos_and_direction(t_game *game, int i)
 {

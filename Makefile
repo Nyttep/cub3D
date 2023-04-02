@@ -30,6 +30,7 @@ SRCS_NAME = main.c \
 			drawing.c \
 			raycasting_1.c \
 			raycasting_2.c \
+			raycasting_3.c \
 			utils.c \
 			check_map.c
 
