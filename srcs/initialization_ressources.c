@@ -6,19 +6,19 @@
 /*   By: pdubois <pdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:34:21 by pdubois           #+#    #+#             */
-/*   Updated: 2023/02/09 16:12:33 by pdubois          ###   ########.fr       */
+/*   Updated: 2023/04/02 17:23:46 by pdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	ft_init_img(t_game *game, char *path, t_img *img)
+void	ft_init_img(t_game *game, char *path, t_texture *img)
 {
 	img->img = mlx_xpm_file_to_image(game->mlx, path, &img->width,
 			&img->height);
 	if (!img->img)
 		ft_error(game, NULL);
-	img->addr = mlx_get_data_addr(img->img, &img->bpp, &img->size_line,
+	img->addr = (int *) mlx_get_data_addr(img->img, &img->bpp, &img->size_line,
 			&img->endian);
 	if (!img->addr)
 		ft_error(game, NULL);
@@ -43,19 +43,10 @@ void	ft_init_fc(t_game *game, char *rgb, int i)
 			rgb++;
 		rgb++;
 	}
-}
-
-void	ft_init_walls(t_game *game, char *path, int i)
-{
-	t_img	*img;
-	t_img	*set[4];
-
-	ft_i_hate_norminette(set, game);
-	img = set[i];
-	img = malloc(sizeof(t_img));
-	if (img == NULL)
-		ft_error(game, NULL);
-	ft_init_img(game, path, img);
+	if (i == 4)
+		game->color_down = ft_convert_rgb_to_int(game->floor);
+	else if (i == 5)
+		game->color_up = ft_convert_rgb_to_int(game->ceiling);
 }
 
 void	ft_parse_and_init(t_game *game, char *set[6], char *buff, bool state[6])
@@ -68,7 +59,7 @@ void	ft_parse_and_init(t_game *game, char *set[6], char *buff, bool state[6])
 		if (!ft_strncmp(ft_skip_spaces(buff), set[i], ft_strlen(set[i])))
 		{
 			if (i < 4)
-				ft_init_walls(game, ft_format_path(buff), i);
+				ft_init_img(game, ft_format_path(buff), &game->texture[i]);
 			else
 				ft_init_fc(game, ft_format_path(buff), i);
 			state[i] = 1;
@@ -100,5 +91,7 @@ char	*ft_init_ressources(t_game *game, int fd)
 	}
 	if (ft_is_unfinished(state))
 		ft_error(game, "The .cub does not conform");
+	game->texwidth = game->texture[0].width;
+	game->texheight = game->texture[0].height;
 	return (buff);
 }

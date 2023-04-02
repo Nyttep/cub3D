@@ -6,7 +6,7 @@
 /*   By: pdubois <pdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 18:34:28 by paul              #+#    #+#             */
-/*   Updated: 2023/04/01 17:12:55 by pdubois          ###   ########.fr       */
+/*   Updated: 2023/04/02 17:24:11 by pdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,10 +111,6 @@ typedef struct s_game
 	char	**map;
 	int		floor[3];
 	int		ceiling[3];
-	t_img	*north;
-	t_img	*south;
-	t_img	*west;
-	t_img	*east;
 }	t_game;
 
 char	*get_next_line(int fd);
@@ -140,8 +136,9 @@ bool	ft_is_unfinished(bool state[6]);
 char	*ft_format_path(char *buff);
 int		ft_is_valid_char_map(char c);
 void	*ft_realloc_strs(void *ptr, size_t size);
+int		ft_convert_rgb_to_int(int rgb[3]);
 
-void	ft_i_hate_norminette(t_img *set[4], t_game *game);
+void	ft_i_hate_norminette(t_texture set[4], t_game *game);
 void	ft_norminette_made_me_do_that(char *set[6]);
 
 void	tests_raycasting(t_game	*game);
