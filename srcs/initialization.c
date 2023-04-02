@@ -6,7 +6,7 @@
 /*   By: pdubois <pdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 17:09:12 by pdubois           #+#    #+#             */
-/*   Updated: 2023/04/02 18:00:10 by pdubois          ###   ########.fr       */
+/*   Updated: 2023/04/02 18:26:31 by pdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,35 +14,30 @@
 
 void	ft_fill_map(t_game *game, char **srcs, int max_len)
 {
-	int	i;
-	int	l;
-	int	j;
-	int	k;
-	int	len;
+	int	tab[5];
 
-	i = 0;
-	l = 0;
-	while (srcs[i])
+	ft_bzero(tab, (sizeof(int) * 5));
+	while (srcs[tab[0]])
 	{
-		j = ft_strlen(srcs[i]) - 2;
-		if (srcs[i][ft_strlen(srcs[i]) - 1] != '\n')
-			j = ft_strlen(srcs[i]) - 1;
-		len = j + 1;
-		k = 0;
-		game->map[l][k++] = ' ';
-		while (j >= 0 && k < max_len - 1)
+		tab[2] = ft_strlen(srcs[tab[0]]) - 2;
+		if (srcs[tab[0]][ft_strlen(srcs[tab[0]]) - 1] != '\n')
+			tab[2] = ft_strlen(srcs[tab[0]]) - 1;
+		tab[4] = tab[2] + 1;
+		tab[3] = 0;
+		game->map[tab[1]][tab[3]++] = ' ';
+		while (tab[2] >= 0 && tab[3] < max_len - 1)
 		{
-			if ((l == 0 || l == ft_strslen(srcs) + 1)
-				|| (k < (max_len - len - 1)))
-				game->map[l][k++] = ' ';
+			if ((tab[1] == 0 || tab[1] == ft_strslen(srcs) + 1)
+				|| (tab[3] < (max_len - tab[4] - 1)))
+				game->map[tab[1]][tab[3]++] = ' ';
 			else
-				game->map[l][k++] = srcs[i][j--];
+				game->map[tab[1]][tab[3]++] = srcs[tab[0]][tab[2]--];
 		}
-		while (k < max_len)
-			game->map[l][k++] = ' ';
-		if (l != 0 && l != ft_strslen(srcs))
-			i++;
-		l++;
+		while (tab[3] < max_len)
+			game->map[tab[1]][tab[3]++] = ' ';
+		if (tab[1] != 0 && tab[1] != ft_strslen(srcs))
+			tab[0]++;
+		tab[1]++;
 	}
 }
 
