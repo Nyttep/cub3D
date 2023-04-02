@@ -30,7 +30,8 @@ SRCS_NAME = main.c \
 			drawing.c \
 			raycasting_1.c \
 			raycasting_2.c \
-			utils.c
+			utils.c \
+			check_map.c
 
 SRCS_PATH = srcs
 SRCS = $(addprefix $(SRCS_PATH)/, $(SRCS_NAME))
