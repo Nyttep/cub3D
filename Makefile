@@ -24,7 +24,14 @@ SRCS_NAME = main.c \
 			initialization.c \
 			initialization_ressources.c \
 			initialization_utils.c \
-			norminette_is_stupid.c
+			norminette_is_stupid.c \
+			movements.c \
+			movements_rotate.c \
+			drawing.c \
+			raycasting_1.c \
+			raycasting_2.c \
+			utils.c
+
 SRCS_PATH = srcs
 SRCS = $(addprefix $(SRCS_PATH)/, $(SRCS_NAME))
 INCS_NAME = cub3D.h
