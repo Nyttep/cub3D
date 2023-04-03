@@ -23,15 +23,17 @@ SRCS_NAME = main.c \
 			clean_exit.c \
 			initialization.c \
 			initialization_ressources.c \
-			initialization_utils.c \
-			norminette_is_stupid.c \
+			initialization_utils_1.c \
+			initialization_utils_2.c \
 			movements.c \
 			movements_rotate.c \
 			drawing.c \
 			raycasting_1.c \
 			raycasting_2.c \
 			utils.c \
-			check_map.c
+			check_map.c \
+			initialization_map.c \
+			convert_rgb.c
 
 SRCS_PATH = srcs
 SRCS = $(addprefix $(SRCS_PATH)/, $(SRCS_NAME))

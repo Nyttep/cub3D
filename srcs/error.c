@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: pdubois <pdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 18:45:41 by paul              #+#    #+#             */
-/*   Updated: 2022/12/27 18:50:40 by paul             ###   ########.fr       */
+/*   Updated: 2023/04/03 18:14:27 by pdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,5 @@ void	ft_error(t_game *game, char *s)
 		printf("Error\n%s\n", s);
 	else
 		perror("Error\n");
-	ft_quit(game);
+	ft_quit(game, errno);
 }
