@@ -6,7 +6,7 @@
 /*   By: pdubois <pdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:34:21 by pdubois           #+#    #+#             */
-/*   Updated: 2023/04/02 17:23:46 by pdubois          ###   ########.fr       */
+/*   Updated: 2023/04/03 18:09:19 by pdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ char	*ft_init_ressources(t_game *game, int fd)
 	bool	state[6];
 
 	ft_bzero(state, sizeof(state));
-	ft_norminette_made_me_do_that(set);
+	ft_init_set(set);
 	buff = get_next_line(fd);
 	while (buff && ft_is_unfinished(state))
 	{

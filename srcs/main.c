@@ -6,7 +6,7 @@
 /*   By: pdubois <pdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 15:35:30 by pdubois           #+#    #+#             */
-/*   Updated: 2023/04/02 18:09:58 by pdubois          ###   ########.fr       */
+/*   Updated: 2023/04/03 18:26:00 by pdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	main(int ac, char **av)
 		ft_error(game, NULL);
 	ft_init(game, av);
 	tests_raycasting(game);
+	ft_quit(game, 0);
 }
 
 void	ft_coordinate_on_texture(t_game *game)

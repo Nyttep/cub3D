@@ -6,7 +6,7 @@
 /*   By: pdubois <pdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 18:44:38 by paul              #+#    #+#             */
-/*   Updated: 2023/04/02 17:55:38 by pdubois          ###   ########.fr       */
+/*   Updated: 2023/04/03 17:53:55 by pdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,4 +85,19 @@ int	ft_check_rgb(char *str)
 		i++;
 	}
 	return (0);
+}
+
+void	ft_check_after_map(t_game *game, int fd, char *buff)
+{
+	buff = get_next_line(fd);
+	while (buff)
+	{
+		if (buff[0] != '\n')
+		{
+			free(buff);
+			ft_error(game, "there should not be anything after the map");
+		}
+		free(buff);
+		buff = get_next_line(fd);
+	}
 }
