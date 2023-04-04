@@ -6,23 +6,11 @@
 /*   By: pdubois <pdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 17:09:12 by pdubois           #+#    #+#             */
-/*   Updated: 2023/04/04 15:32:40 by pdubois          ###   ########.fr       */
+/*   Updated: 2023/04/04 15:43:47 by pdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-void	ft_display_map(char **map)
-{
-	int	i;
-
-	i = 0;
-	while (map[i])
-	{
-		ft_printf("|%s|\n", map[i]);
-		i++;
-	}
-}
 
 void	ft_init_direction_2(t_game *game)
 {
@@ -104,12 +92,10 @@ void	ft_init(t_game *game, char **av)
 		ft_error(game, NULL);
 	buff = ft_init_ressources(game, game->fd);
 	ft_init_map(game, game->fd, buff);
-	ft_display_map(game->map);
 	ft_check_map(game);
 	ft_init_player(game);
-	ft_check_after_map(game, fd, buff);
+	ft_check_after_map(game, game->fd, buff);
 	ft_player_middle_box(game);
-	close(fd);
 	if (close(game->fd) == -1)
 		ft_error(game, NULL);
 	game->fd = 0;

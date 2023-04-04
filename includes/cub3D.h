@@ -6,11 +6,11 @@
 /*   By: pdubois <pdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 18:34:28 by paul              #+#    #+#             */
-/*   Updated: 2023/04/04 15:31:35 by pdubois          ###   ########.fr       */
+/*   Updated: 2023/04/04 16:09:55 by pdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	CUB3D_H
+#ifndef CUB3D_H
 # define CUB3D_H
 
 # include <stdbool.h>
@@ -32,38 +32,37 @@
 
 typedef struct s_ray
 {
-	double	posx; //position x du joueur
-	double	posy; //position y du joueur
-	double	dirx; //vecteur de direction (commence à -1 pour N, 1 pour S, 0 sinon)
-	double	diry; //vecteur de direction (commence à -1 pour W, 1 pour E, 0 sinon)
-	double	planx; //vecteur du plan (commence à 0.66 pour E, -0.66 pour W, 0 sinon)
-	double	plany; //vecteur du plan (commence à 0.66 pour N, -0.66 pour S, 0 sinon)
-	double	raydirx; //calcul de direction x du rayon
-	double	raydiry; //calcul de direction y du rayon
-	double	camerax; //point x sur la plan camera : Gauche ecran = -1, milieu = 0, droite = 1
-	int		mapx; // coordonée x du carré dans lequel est pos
-	int		mapy; // coordonnée y du carré dans lequel est pos
-	double	sidedistx; //distance que le rayon parcours jusqu'au premier point d'intersection vertical (=un coté x)
-	double	sidedisty; //distance que le rayon parcours jusqu'au premier point d'intersection horizontal (= un coté y)
-	double	deltadistx; //distance que rayon parcours entre chaque point d'intersection vertical
-	double	deltadisty; //distance que le rayon parcours entre chaque point d'intersection horizontal
-	int		stepx; // -1 si doit sauter un carre dans direction x negative, 1 dans la direction x positive
-	int		stepy; // -1 si doit sauter un carre dans la direction y negative, 1 dans la direction y positive
-	int		hit; // 1 si un mur a ete touche, 0 sinon
-	int		side; // 0 si c'est un cote x qui est touche (vertical), 1 si un cote y (horizontal)
-	double	perpwalldist; // distance du joueur au mur
-	int		lineheight; //hauteur de la ligne a dessiner
-	int		drawstart; //position de debut ou il faut dessiner
-	int		drawend; //position de fin ou il faut dessiner
-	double	movespeed;//const deplacement
-	double	rotspeed; //const rotation
-	double	wallx;//wallX represents the exact value where the wall was hit
-	int		texnum; //numero de texture
-	double	step;// How much to increase the texture coordinate per screen pixel
-	int		texx;//texX is the x-coordinate of the texture, and this is calculated out of wallX.
-	int		texy;//texY is the y-coordinate of the texture, and this is calculated out of wallX.
-	double	texpos; // Starting texture coordinate
-	
+	double	posx;
+	double	posy;
+	double	dirx;
+	double	diry;
+	double	planx;
+	double	plany;
+	double	raydirx;
+	double	raydiry;
+	double	camerax;
+	int		mapx;
+	int		mapy;
+	double	sidedistx;
+	double	sidedisty;
+	double	deltadistx;
+	double	deltadisty;
+	int		stepx;
+	int		stepy;
+	int		hit;
+	int		side;
+	double	perpwalldist;
+	int		lineheight;
+	int		drawstart;
+	int		drawend;
+	double	movespeed;
+	double	rotspeed;
+	double	wallx;
+	int		texnum;
+	double	step;
+	int		texx;
+	int		texy;
+	double	texpos;
 }	t_ray;
 
 typedef struct s_texture
@@ -86,32 +85,32 @@ typedef struct s_img
 	int		bpp;
 	int		endian;
 	int		size_line;
-} t_img;
+}	t_img;
 
 typedef struct s_game
 {
-	void	*mlx;
-	void	*win;
-	void	*img;
-	int		width;
-	int		height;
-	t_ray	ray;
-	t_img	testimg;
-	int		color_up;
-	int		color_down;
-	int		color_middle;
-	int		pos_pixel;
-	char	*pixel;
-	int		x;	//player x
-	int		y;	//player y
-	char	direction; //player direction
+	void		*mlx;
+	void		*win;
+	void		*img;
+	int			width;
+	int			height;
+	t_ray		ray;
+	t_img		testimg;
+	int			color_up;
+	int			color_down;
+	int			color_middle;
+	int			pos_pixel;
+	char		*pixel;
+	int			x;
+	int			y;
+	char		direction;
 	t_texture	texture[4];
-	int		texwidth;
-	int		texheight;
-	char	**map;
-	int		floor[3];
-	int		ceiling[3];
-	int		fd;
+	int			texwidth;
+	int			texheight;
+	char		**map;
+	int			floor[3];
+	int			ceiling[3];
+	int			fd;
 }	t_game;
 
 char	*get_next_line(int fd);
@@ -142,6 +141,7 @@ void	*ft_realloc_strs(void *ptr, size_t size);
 int		ft_convert_rgb_to_int(int rgb[3]);
 int		ft_find_max_len(int nb_line, char **strs);
 void	ft_init_set(char *set[6]);
+void	ft_free_quit(t_game *game, char *str);
 
 void	tests_raycasting(t_game	*game);
 int		ft_close(t_game *game);
