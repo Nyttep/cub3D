@@ -6,7 +6,7 @@
 /*   By: pdubois <pdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:34:21 by pdubois           #+#    #+#             */
-/*   Updated: 2023/04/04 16:06:14 by pdubois          ###   ########.fr       */
+/*   Updated: 2023/04/04 17:33:59 by pdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,13 @@ int	ft_init_fc(t_game *game, char *rgb, int i)
 	if (i == 4)
 	{
 		game->color_down = ft_convert_rgb_to_int(game->floor);
-		if (!game->color_down)
+		if (game->color_down == -1)
 			return (0);
 	}
 	else if (i == 5)
 	{
 		game->color_up = ft_convert_rgb_to_int(game->ceiling);
-		if (!game->color_up)
+		if (game->color_up == -1)
 			return (0);
 	}
 	return (1);

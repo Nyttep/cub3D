@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aradice <aradice@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pdubois <pdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 17:55:04 by aradice           #+#    #+#             */
-/*   Updated: 2023/04/02 17:55:47 by aradice          ###   ########.fr       */
+/*   Updated: 2023/04/04 18:40:48 by pdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	ft_draw_texture(t_game *game, int i)
 	int	y;
 
 	y = 0;
-	game->ray.step = (double)game->texheight / game->ray.lineheight;
+	game->ray.step = 1.0 * (double)game->texheight / game->ray.lineheight;
 	game->ray.texpos = (game->ray.drawstart - WIN_HEIGHT / 2
 			+ game->ray.lineheight / 2) * game->ray.step;
 	y = game->ray.drawstart;

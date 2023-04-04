@@ -6,7 +6,7 @@
 /*   By: pdubois <pdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 18:03:27 by pdubois           #+#    #+#             */
-/*   Updated: 2023/04/04 15:53:41 by pdubois          ###   ########.fr       */
+/*   Updated: 2023/04/04 17:33:40 by pdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ int	ft_convert_rgb_to_int(int rgb[3])
 	char	*tmp;
 	int		ret;
 
+	ret = -1;
 	ft_init_rbg_hex(rgb_hex, rgb);
 	tmp = NULL;
 	if (!rgb_hex[0])
