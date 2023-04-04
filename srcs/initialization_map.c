@@ -6,7 +6,7 @@
 /*   By: pdubois <pdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 17:55:03 by pdubois           #+#    #+#             */
-/*   Updated: 2023/04/04 15:21:09 by pdubois          ###   ########.fr       */
+/*   Updated: 2023/04/04 15:59:53 by pdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,18 @@ void	ft_fill_map(t_game *game, char **srcs, int max_len)
 	}
 }
 
+void	ft_free_quit(t_game *game, char *str)
+{
+	free(str);
+	ft_error(game, NULL);
+}
+
+void	ft_free_strs_quit(t_game *game, char **strs, char *str)
+{
+	ft_free_strs(strs);
+	ft_error(game, str);
+}
+
 char	**ft_pre_init_map(t_game *game, int fd, char *buff)
 {
 	char	**ret;
@@ -49,10 +61,7 @@ char	**ft_pre_init_map(t_game *game, int fd, char *buff)
 	i = 0;
 	ret = malloc(sizeof(char *) * 20);
 	if (!ret)
-	{
-		free(buff);
-		ft_error(game, NULL);
-	}
+		ft_free_quit(game, buff);
 	ft_bzero(ret, (sizeof(char *) * 20));
 	while (buff && ft_skip_spaces(buff)[0] == '\n')
 	{
@@ -60,19 +69,13 @@ char	**ft_pre_init_map(t_game *game, int fd, char *buff)
 		buff = get_next_line(fd);
 	}
 	if (!buff || !ft_is_valid_char_map(ft_skip_spaces(buff)[0]))
-	{
-		free(ret);
-		ft_error(game, "The .cub does not conform");
-	}
+		ft_free_strs_quit(game, ret, "The .cub does not conform");
 	while (buff && ft_skip_spaces(buff)[0] != '\n')
 	{
 		if (i % 20 == 19)
 			ret = ft_realloc_strs(ret, (sizeof(char *) * (i + 21)));
 		if (!ret)
-		{
-			free(buff);
-			ft_error(game, NULL);
-		}
+			ft_free_quit(game, buff);
 		ret[i++] = buff;
 		buff = get_next_line(fd);
 	}
@@ -90,10 +93,7 @@ void	ft_init_map(t_game *game, int fd, char *buff)
 	nb_line = ft_strslen(tmp) + 2;
 	game->map = malloc(sizeof(char *) * (nb_line + 1));
 	if (!game->map)
-	{
-		ft_free_strs(tmp);
-		ft_error(game, NULL);
-	}
+		ft_free_strs_quit(game, tmp, NULL);
 	ft_bzero(game->map, (sizeof(char *) * (nb_line + 1)));
 	max_len = ft_find_max_len(nb_line, tmp);
 	i = 0;
@@ -101,10 +101,7 @@ void	ft_init_map(t_game *game, int fd, char *buff)
 	{
 		game->map[i] = malloc(sizeof(char) * (max_len + 1));
 		if (!game->map[i])
-		{
-			ft_free_strs(tmp);
-			ft_error(game, NULL);
-		}
+			ft_free_strs_quit(game, tmp, NULL);
 		ft_bzero(game->map[i], (sizeof(char) * (max_len + 1)));
 		i++;
 	}

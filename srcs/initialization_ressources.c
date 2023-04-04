@@ -6,7 +6,7 @@
 /*   By: pdubois <pdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:34:21 by pdubois           #+#    #+#             */
-/*   Updated: 2023/04/04 15:24:06 by pdubois          ###   ########.fr       */
+/*   Updated: 2023/04/04 16:06:14 by pdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,11 @@ void	ft_init_img(t_game *game, char *path, t_texture *img)
 		ft_error(game, NULL);
 }
 
-int	ft_init_fc(t_game *game, char *rgb, int i)
+void	ft_separate_rgb(int	*color, char *rgb)
 {
-	int	*color;
 	int	j;
 
 	j = 0;
-	if (ft_check_rgb(rgb))
-		ft_error(game, "The floor or ceiling line does not conform");
-	if (i == 4)
-		color = game->floor;
-	else if (i == 5)
-		color = game->ceiling;
 	while (j < 3)
 	{
 		color[j++] = ft_atoi(rgb);
@@ -43,6 +36,19 @@ int	ft_init_fc(t_game *game, char *rgb, int i)
 			rgb++;
 		rgb++;
 	}
+}
+
+int	ft_init_fc(t_game *game, char *rgb, int i)
+{
+	int	*color;
+
+	if (ft_check_rgb(rgb))
+		ft_error(game, "The floor or ceiling line does not conform");
+	if (i == 4)
+		color = game->floor;
+	else if (i == 5)
+		color = game->ceiling;
+	ft_separate_rgb(color, rgb);
 	if (i == 4)
 	{
 		game->color_down = ft_convert_rgb_to_int(game->floor);
@@ -70,11 +76,8 @@ void	ft_parse_and_init(t_game *game, char *set[6], char *buff, bool state[6])
 			if (i < 4)
 				ft_init_img(game, ft_format_path(buff), &game->texture[i]);
 			else
-				if(!ft_init_fc(game, ft_format_path(buff), i))
-				{
-					free(buff);
-					ft_error(game, NULL);
-				}
+				if (!ft_init_fc(game, ft_format_path(buff), i))
+					ft_free_quit(game, buff);
 			state[i] = 1;
 			break ;
 		}

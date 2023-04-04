@@ -6,7 +6,7 @@
 /*   By: pdubois <pdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 15:35:30 by pdubois           #+#    #+#             */
-/*   Updated: 2023/04/04 15:35:16 by pdubois          ###   ########.fr       */
+/*   Updated: 2023/04/04 15:44:30 by pdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,20 +27,11 @@ int	main(int ac, char **av)
 	game->img = mlx_new_image(game->mlx, WIN_WIDTH, WIN_HEIGHT);
 	if (!game->img)
 		ft_error(game, NULL);
-	mlx_hook(game->win, 2,  1L << 0, ft_movements, game);
+	mlx_hook(game->win, 2, 1L << 0, ft_movements, game);
 	mlx_hook(game->win, 17, 1L << 0, ft_close, game);
 	mlx_loop_hook(game->mlx, ft_loop, game);
 	mlx_loop(game->mlx);
 	ft_quit(game, 0);
-}
-
-void	ft_coordinate_on_texture(t_game *game)
-{
-	game->ray.texx = (int)(game->ray.wallx * (double)game->texwidth);
-	if (game->ray.side == 0 && game->ray.raydirx > 0)
-		game->ray.texx = game->texwidth - game->ray.texx - 1;
-	if (game->ray.side == 1 && game->ray.raydiry < 0)
-		game->ray.texx = game->texwidth - game->ray.texx - 1;
 }
 
 int	ft_loop(t_game *game)
@@ -86,7 +77,3 @@ int	ft_movements(int keycode, t_game *game)
 		ft_quit(game, 0);
 	return (0);
 }
-
-void	tests_raycasting(t_game	*game)
-{
-
