@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aradice <aradice@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pdubois <pdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 17:59:54 by aradice           #+#    #+#             */
-/*   Updated: 2023/04/02 18:00:14 by aradice          ###   ########.fr       */
+/*   Updated: 2023/04/04 15:26:42 by pdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,15 @@
 void	ft_new_image(t_game *game)
 {
 	game->testimg.img = mlx_new_image(game->mlx, WIN_WIDTH, WIN_HEIGHT);
+	if (!game->testimg.img)
+		ft_error(game, NULL);
 	game->testimg.addr = mlx_get_data_addr(game->testimg.img,
 			&game->testimg.bpp, &game->testimg.size_line,
 			&game->testimg.endian);
 }
 
-int	ft_close(void)
+int	ft_close(t_game *game)
 {
-	exit(0);
+	ft_quit(game, 0);
+	return (0);
 }
