@@ -6,7 +6,7 @@
 /*   By: pdubois <pdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:34:21 by pdubois           #+#    #+#             */
-/*   Updated: 2023/04/02 17:23:46 by pdubois          ###   ########.fr       */
+/*   Updated: 2023/04/04 15:24:06 by pdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_init_img(t_game *game, char *path, t_texture *img)
 		ft_error(game, NULL);
 }
 
-void	ft_init_fc(t_game *game, char *rgb, int i)
+int	ft_init_fc(t_game *game, char *rgb, int i)
 {
 	int	*color;
 	int	j;
@@ -44,9 +44,18 @@ void	ft_init_fc(t_game *game, char *rgb, int i)
 		rgb++;
 	}
 	if (i == 4)
+	{
 		game->color_down = ft_convert_rgb_to_int(game->floor);
+		if (!game->color_down)
+			return (0);
+	}
 	else if (i == 5)
+	{
 		game->color_up = ft_convert_rgb_to_int(game->ceiling);
+		if (!game->color_up)
+			return (0);
+	}
+	return (1);
 }
 
 void	ft_parse_and_init(t_game *game, char *set[6], char *buff, bool state[6])
@@ -61,7 +70,11 @@ void	ft_parse_and_init(t_game *game, char *set[6], char *buff, bool state[6])
 			if (i < 4)
 				ft_init_img(game, ft_format_path(buff), &game->texture[i]);
 			else
-				ft_init_fc(game, ft_format_path(buff), i);
+				if(!ft_init_fc(game, ft_format_path(buff), i))
+				{
+					free(buff);
+					ft_error(game, NULL);
+				}
 			state[i] = 1;
 			break ;
 		}
@@ -81,7 +94,7 @@ char	*ft_init_ressources(t_game *game, int fd)
 	bool	state[6];
 
 	ft_bzero(state, sizeof(state));
-	ft_norminette_made_me_do_that(set);
+	ft_init_set(set);
 	buff = get_next_line(fd);
 	while (buff && ft_is_unfinished(state))
 	{
