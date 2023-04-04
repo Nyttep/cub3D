@@ -6,7 +6,7 @@
 /*   By: pdubois <pdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 18:05:41 by pdubois           #+#    #+#             */
-/*   Updated: 2023/04/03 18:11:30 by pdubois          ###   ########.fr       */
+/*   Updated: 2023/04/04 15:21:08 by pdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,10 @@ void	*ft_realloc_strs(void *ptr, size_t size)
 	i = 0;
 	ret = malloc(size);
 	if (!ret)
+	{
+		free(ptr);
 		return ((void *) NULL);
+	}
 	ft_bzero(ret, size);
 	while (tmp[i])
 	{

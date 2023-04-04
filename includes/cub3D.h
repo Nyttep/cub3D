@@ -6,7 +6,7 @@
 /*   By: pdubois <pdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 18:34:28 by paul              #+#    #+#             */
-/*   Updated: 2023/04/03 18:18:46 by pdubois          ###   ########.fr       */
+/*   Updated: 2023/04/04 15:21:11 by pdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,7 @@ int		ft_find_max_len(int nb_line, char **strs);
 void	ft_init_set(char *set[6]);
 
 void	tests_raycasting(t_game	*game);
-int		ft_close(void);
+int		ft_close(t_game *game);
 int		ft_movements(int keycode, t_game *game);
 int		ft_loop(t_game *game);
 

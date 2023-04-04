@@ -6,7 +6,7 @@
 /*   By: pdubois <pdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 18:03:27 by pdubois           #+#    #+#             */
-/*   Updated: 2023/04/03 18:13:06 by pdubois          ###   ########.fr       */
+/*   Updated: 2023/04/04 15:21:09 by pdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ char	*ft_int_to_hex(int nb)
 
 	j = 1;
 	ret = malloc(sizeof(char) * (3));
+	if (!ret)
+		return (NULL);
 	ft_bzero(ret, (sizeof(char) * 3));
 	ret[0] = '0';
 	ret[1] = '0';
@@ -61,6 +63,19 @@ char	*ft_int_to_hex(int nb)
 	return (ret);
 }
 
+int	ft_free_convert(char *rgb_hex[3], char *tmp)
+{
+	if (rgb_hex[0])
+		free(rgb_hex[0]);
+	if (rgb_hex[1])
+		free(rgb_hex[1]);
+	if (rgb_hex[2])
+		free(rgb_hex[2]);
+	if (tmp)
+		free(tmp);
+	return (0);
+}
+
 int	ft_convert_rgb_to_int(int rgb[3])
 {
 	char	*rgb_hex[3];
@@ -68,15 +83,25 @@ int	ft_convert_rgb_to_int(int rgb[3])
 	char	*tmp;
 	int		ret;
 
+	rgb_hex[1] = NULL;
+	rgb_hex[2] = NULL;
+	tmp = NULL;
 	rgb_hex[0] = ft_int_to_hex(rgb[0]);
+	if (!rgb_hex[0])
+		return (ft_free_convert(rgb_hex, tmp));
 	rgb_hex[1] = ft_int_to_hex(rgb[1]);
+	if (!rgb_hex[1])
+		return (ft_free_convert(rgb_hex, tmp));
 	rgb_hex[2] = ft_int_to_hex(rgb[2]);
+	if (!rgb_hex[2])
+		return (ft_free_convert(rgb_hex, tmp));
 	tmp = ft_strjoin(rgb_hex[0], rgb_hex[1]);
+	if (!tmp)
+		return (ft_free_convert(rgb_hex, tmp));
 	hex = ft_strjoin(tmp, rgb_hex[2]);
-	free(tmp);
-	free(rgb_hex[0]);
-	free(rgb_hex[1]);
-	free(rgb_hex[2]);
+	ft_free_convert(rgb_hex, tmp);
+	if (!hex)
+		return (0);
 	ret = ft_hex_to_int(hex);
 	free(hex);
 	return (ret);

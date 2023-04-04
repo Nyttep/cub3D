@@ -6,7 +6,7 @@
 /*   By: pdubois <pdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 17:09:12 by pdubois           #+#    #+#             */
-/*   Updated: 2023/04/03 18:22:37 by pdubois          ###   ########.fr       */
+/*   Updated: 2023/04/04 14:49:45 by pdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,10 +95,10 @@ void	ft_init(t_game *game, char **av)
 {
 	char	*buff;
 
-	ft_bzero(game, sizeof(game));
+	ft_bzero(game, sizeof(*game));
 	game->mlx = mlx_init();
 	if (!(game->mlx))
-		ft_error(game, NULL);
+		ft_error(game, "failed to initialize the mlx library");
 	game->fd = open(av[1], O_RDONLY);
 	if (game->fd < 0)
 		ft_error(game, NULL);

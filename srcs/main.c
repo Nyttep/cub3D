@@ -6,7 +6,7 @@
 /*   By: pdubois <pdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 15:35:30 by pdubois           #+#    #+#             */
-/*   Updated: 2023/04/03 18:26:00 by pdubois          ###   ########.fr       */
+/*   Updated: 2023/04/04 15:27:14 by pdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,20 +74,24 @@ int	ft_movements(int keycode, t_game *game)
 	ft_rotate_left(keycode, game);
 	ft_rotate_right(keycode, game);
 	if (keycode == XK_Escape)
-		exit(0);
+		ft_quit(game, 0);
 	return (0);
 }
 
 void	tests_raycasting(t_game	*game)
 {
 	game->win = mlx_new_window(game->mlx, WIN_WIDTH, WIN_HEIGHT, "Cub3d");
+	if (!game->win)
+		ft_error(game, NULL);
 	game->img = mlx_new_image(game->mlx, WIN_WIDTH, WIN_HEIGHT);
+	if (!game->img)
+		ft_error(game, NULL);
 
 	game->ray.posx = (double)game->x + 0.5;
 	game->ray.posy = (double)game->y + 0.5;
 
 	mlx_hook(game->win, 2,  1L << 0, ft_movements, game);
-	mlx_hook(game->win, 17, 1L << 0, ft_close, NULL);
+	mlx_hook(game->win, 17, 1L << 0, ft_close, game);
 	mlx_loop_hook(game->mlx, ft_loop, game);
 	mlx_loop(game->mlx);
 }
