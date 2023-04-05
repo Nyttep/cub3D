@@ -59,7 +59,7 @@ ${LIBS}:
 ${NAME}:	${LIBS} ${OBJS} ${INCS}
 			${CC} -g -o ${NAME} ${OBJS} ${LIBS} ${MLXFLAGS}
 clean:
-			${RM} ${OBJS}; make -C libft fclean;
+			${RM} ${OBJS} minilibx-linux; make -C libft fclean;
 
 fclean:		clean
 			${RM} ${NAME}
