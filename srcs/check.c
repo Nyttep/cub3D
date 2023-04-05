@@ -6,7 +6,7 @@
 /*   By: pdubois <pdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 18:44:38 by paul              #+#    #+#             */
-/*   Updated: 2023/04/03 17:53:55 by pdubois          ###   ########.fr       */
+/*   Updated: 2023/04/05 16:43:14 by pdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,12 @@ int	ft_check_rgbformat(char *str, int i)
 			j++;
 			i++;
 		}
-		if (j == 0)
-			return (1);
 		k++;
-		if (ft_check_rbgformat_afterdigits(str, i, k))
+		if (j == 0 || ft_check_rbgformat_afterdigits(str, i, k))
 			return (1);
 		i++;
+		while (str[i] == ' ' || str[i] == '\n')
+			i++;
 	}
 	if (k != 3)
 		return (1);

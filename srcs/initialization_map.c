@@ -6,7 +6,7 @@
 /*   By: pdubois <pdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 17:55:03 by pdubois           #+#    #+#             */
-/*   Updated: 2023/04/04 15:59:53 by pdubois          ###   ########.fr       */
+/*   Updated: 2023/04/05 16:44:51 by pdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ char	**ft_pre_init_map(t_game *game, int fd, char *buff)
 		ret[i++] = buff;
 		buff = get_next_line(fd);
 	}
+	free(buff);
 	return (ret);
 }
 
@@ -95,7 +96,7 @@ void	ft_init_map(t_game *game, int fd, char *buff)
 	if (!game->map)
 		ft_free_strs_quit(game, tmp, NULL);
 	ft_bzero(game->map, (sizeof(char *) * (nb_line + 1)));
-	max_len = ft_find_max_len(nb_line, tmp);
+	max_len = ft_max_len(nb_line, tmp);
 	i = 0;
 	while (i < nb_line)
 	{

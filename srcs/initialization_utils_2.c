@@ -6,30 +6,11 @@
 /*   By: pdubois <pdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 18:05:41 by pdubois           #+#    #+#             */
-/*   Updated: 2023/04/04 15:21:08 by pdubois          ###   ########.fr       */
+/*   Updated: 2023/04/05 15:45:43 by pdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-int	ft_max_length(char **strs)
-{
-	int	ret;
-	int	tmp;
-	int	i;
-
-	i = 0;
-	tmp = 0;
-	ret = 0;
-	while (strs[i])
-	{
-		tmp = ft_strlen(strs[i]);
-		if (tmp > ret)
-			ret = tmp;
-		i++;
-	}
-	return (ret);
-}
 
 void	*ft_realloc_strs(void *ptr, size_t size)
 {
@@ -55,7 +36,7 @@ void	*ft_realloc_strs(void *ptr, size_t size)
 	return (ret);
 }
 
-int	ft_find_max_len(int nb_line, char **strs)
+int	ft_max_len(int nb_line, char **strs)
 {
 	int	i;
 	int	max_len;
