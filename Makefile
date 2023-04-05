@@ -53,9 +53,10 @@ all: $(NAME)
 			${CC} ${CFLAGS} -g -I ${INCS_PATH} -I libft -I minilibx-linux -c $< -o $@ 
 
 ${LIBS}:
+			git clone https://github.com/42Paris/minilibx-linux.git
 			make -C libft; make -C minilibx-linux
 
-${NAME}:	${OBJS} ${INCS} ${LIBS}
+${NAME}:	${LIBS} ${OBJS} ${INCS}
 			${CC} -g -o ${NAME} ${OBJS} ${LIBS} ${MLXFLAGS}
 clean:
 			${RM} ${OBJS}; make -C libft fclean;
