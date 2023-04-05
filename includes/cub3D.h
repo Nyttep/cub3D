@@ -6,7 +6,7 @@
 /*   By: pdubois <pdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 18:34:28 by paul              #+#    #+#             */
-/*   Updated: 2023/04/04 16:12:03 by pdubois          ###   ########.fr       */
+/*   Updated: 2023/04/05 15:45:45 by pdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,7 @@ char	*ft_format_path(char *buff);
 int		ft_is_valid_char_map(char c);
 void	*ft_realloc_strs(void *ptr, size_t size);
 int		ft_convert_rgb_to_int(int rgb[3]);
-int		ft_find_max_len(int nb_line, char **strs);
+int		ft_max_len(int nb_line, char **strs);
 void	ft_init_set(char *set[6]);
 void	ft_free_quit(t_game *game, char *str);
 

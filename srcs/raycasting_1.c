@@ -6,7 +6,7 @@
 /*   By: pdubois <pdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 17:56:46 by aradice           #+#    #+#             */
-/*   Updated: 2023/04/04 18:14:25 by pdubois          ###   ########.fr       */
+/*   Updated: 2023/04/05 15:58:02 by pdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,13 @@ void	ft_hit_function(t_game *game)
 			game->ray.sidedisty += game->ray.deltadisty;
 			game->ray.mapy += game->ray.stepy;
 			game->ray.side = 1;
+		}
+		if (game->ray.mapx > ft_strlen(game->map[0]) - 1
+			|| game->ray.mapy > ft_strslen(game->map) - 1
+			|| game->ray.mapx < 0 || game->ray.mapy < 0)
+		{
+			game->ray.hit = 1;
+			return ;
 		}
 		if (game->map[game->ray.mapy][game->ray.mapx] == '1')
 			game->ray.hit = 1;

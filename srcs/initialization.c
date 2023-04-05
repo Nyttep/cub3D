@@ -6,7 +6,7 @@
 /*   By: pdubois <pdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 17:09:12 by pdubois           #+#    #+#             */
-/*   Updated: 2023/04/04 15:43:47 by pdubois          ###   ########.fr       */
+/*   Updated: 2023/04/05 16:48:32 by pdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	ft_init_player(t_game *game)
 			{
 				nb++;
 				game->direction = game->map[i][y];
-				game->x = y++;
+				game->x = y;
 				game->y = i;
 			}
 		}
@@ -93,8 +93,8 @@ void	ft_init(t_game *game, char **av)
 	buff = ft_init_ressources(game, game->fd);
 	ft_init_map(game, game->fd, buff);
 	ft_check_map(game);
-	ft_init_player(game);
 	ft_check_after_map(game, game->fd, buff);
+	ft_init_player(game);
 	ft_player_middle_box(game);
 	if (close(game->fd) == -1)
 		ft_error(game, NULL);

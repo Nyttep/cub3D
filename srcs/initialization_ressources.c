@@ -6,22 +6,23 @@
 /*   By: pdubois <pdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:34:21 by pdubois           #+#    #+#             */
-/*   Updated: 2023/04/04 17:33:59 by pdubois          ###   ########.fr       */
+/*   Updated: 2023/04/05 16:52:10 by pdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	ft_init_img(t_game *game, char *path, t_texture *img)
+int	ft_init_img(t_game *game, char *path, t_texture *img)
 {
 	img->img = mlx_xpm_file_to_image(game->mlx, path, &img->width,
 			&img->height);
 	if (!img->img)
-		ft_error(game, NULL);
+		return (0);
 	img->addr = (int *) mlx_get_data_addr(img->img, &img->bpp, &img->size_line,
 			&img->endian);
 	if (!img->addr)
-		ft_error(game, NULL);
+		return (0);
+	return (1);
 }
 
 void	ft_separate_rgb(int	*color, char *rgb)
@@ -43,7 +44,7 @@ int	ft_init_fc(t_game *game, char *rgb, int i)
 	int	*color;
 
 	if (ft_check_rgb(rgb))
-		ft_error(game, "The floor or ceiling line does not conform");
+		return (0);
 	if (i == 4)
 		color = game->floor;
 	else if (i == 5)
@@ -73,8 +74,11 @@ void	ft_parse_and_init(t_game *game, char *set[6], char *buff, bool state[6])
 	{
 		if (!ft_strncmp(ft_skip_spaces(buff), set[i], ft_strlen(set[i])))
 		{
-			if (i < 4)
-				ft_init_img(game, ft_format_path(buff), &game->texture[i]);
+			if (i < 4 && !game->texture[i].img)
+			{
+				if (!ft_init_img(game, ft_format_path(buff), &game->texture[i]))
+					ft_free_quit(game, buff);
+			}
 			else
 				if (!ft_init_fc(game, ft_format_path(buff), i))
 					ft_free_quit(game, buff);
