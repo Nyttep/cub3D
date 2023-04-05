@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movements.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aradice <aradice@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pdubois <pdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 17:51:04 by aradice           #+#    #+#             */
-/*   Updated: 2023/04/02 17:55:19 by aradice          ###   ########.fr       */
+/*   Updated: 2023/04/05 14:56:58 by pdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	ft_move_left(int keycode, t_game *game)
 		if (game->map[(int)(game->ray.posy)][(int)(game->ray.posx
 			- game->ray.planx * game->ray.movespeed)] != '1')
 			game->ray.posx -= game->ray.planx * game->ray.movespeed;
-		if (game->map[(int)(game->ray.posy + game->ray.plany
+		if (game->map[(int)(game->ray.posy - game->ray.plany
 				* game->ray.movespeed)][(int)(game->ray.posx)] != '1')
 			game->ray.posy -= game->ray.plany * game->ray.movespeed;
 	}
@@ -58,7 +58,7 @@ void	ft_move_right(int keycode, t_game *game)
 		if (game->map[(int)(game->ray.posy)][(int)(game->ray.posx
 				+ game->ray.planx * game->ray.movespeed)] != '1')
 			game->ray.posx += game->ray.planx * game->ray.movespeed;
-		if (game->map[(int)(game->ray.posy - game->ray.plany
+		if (game->map[(int)(game->ray.posy + game->ray.plany
 				* game->ray.movespeed)][(int)(game->ray.posx)] != '1')
 			game->ray.posy += game->ray.plany * game->ray.movespeed;
 	}
