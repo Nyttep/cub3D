@@ -11,6 +11,10 @@ The `cub3D` project is a 3D game inspired by Wolfenstein 3D, created using the M
 - Textured walls and sprites
 - Collision detection
 
+## Screenshot
+
+![Cub3D Screenshot](screenshot.png)
+
 ## Controls
 
 - `W`: Move forward
